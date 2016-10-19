@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>进度条</title>
+		<style>
+			html,body{
+				margin: 0;
+				padding: 0;
+			}
+			.pB_wrapper{	
+				margin: 100px auto;
+				width: 1200px;
+				height: 50px;
+			}
+			.box{
+				float: left;
+				width: 1000px;
+				height: 50px;
+				background: #000;
+				border-radius: 15px;
+				background: -webkit-linear-gradient(top,#000 0px,#000 1px,#fff 1px,#fff 2px,#858585 2px,#000);
+				text-align: center;
+				position: relative;
+			}
+			.progressBarBg{
+				height: 30px;
+				width: 800px;
+				background: #e7e7e7;
+				border-top: 2px solid #000;
+				border-left: 2px solid #000;
+				border-radius: 15px;
+				position: absolute;
+				left: 18px;
+				top: 8px;
+				overflow: hidden;
+			}
+			.progressBar{
+				height: 30px;
+				background: #77ffcc;
+				border-radius: 15px;
+				position: absolute;
+				left: 0;
+				top: 0;
+				background: -webkit-repeating-linear-gradient(-45deg,#68d4e8 0px,#68d4e8 10px,#4fb0e9 10px,#4fb0e9 20px);
+			}
+			.op{
+				width: 100%;
+				height: 15px;
+				border-top-left-radius: 30px;
+				border-top-right-radius: 30px;
+				background: rgba(255,255,255,0.3);
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+			.pBnum{
+				font-size: 20px;
+				color: #fff;
+				font-weight: 900;
+				position: absolute;
+				right: 20px;
+				top: 15px;
+			}
+			.btn{
+				width: 50px;
+				height: 50px;
+				border: 0;
+				background: -webkit-radial-gradient(50%,red,orange,yellow,green,cyan,blue,purple,red);
+				border-radius: 50%;
+				float: left;
+				margin-left: 20px;
+				font-size: 16px;
+				color: #fff;
+				text-align: center;
+				font-weight: 900;
+				line-height: 50px;
+				cursor: pointer;
+			}
+		</style>
+    </head>
+    <body>
+    	<div class="pB_wrapper">
+    		<div class="box">
+	    		<div class="progressBarBg">
+	    			<div class="progressBar">
+		    			<div class="op"></div>
+		    		</div>
+	    		</div>
+	    		<div class="pBnum">0%</div>
+	    		
+	    	</div>
+	    	<div class="btn">action</div>
+    	</div>
+    	<script>
+    		window.onload = function(){
+    			var pB = document.querySelector('.progressBar');
+    			var pBnum = document.querySelector('.pBnum');
+    			var btn = document.querySelector('.btn');
+    			var pBWidth = 0;
+    			btn.onclick = function(){
+    				var timer = setInterval(function(){
+	    				var num = parseInt( Math.random()*3 );
+	    				pBWidth += num;
+	    				pB.style.width = pBWidth + "%";
+	    				pBnum.innerHTML = pB.style.width;
+	    				
+	    				if( parseInt(pB.style.width) >= 100 ){
+	    					pB.style.width = 100 + "%";
+	    					pBnum.innerHTML = pB.style.width;
+	    					clearInterval( timer );
+	    				}
+	    			},100);
+    			};
+    		}
+    	</script>
+    </body>
+</html>
